@@ -3,6 +3,7 @@ import { Logo } from "../components/logo.js";
 import LoginPage from "./login-page.js";
 import DOMHandler from "../dom-handler.js";
 import HomePage from "./home.js";
+import { signin } from "../services/sessions.js";
 let errors = []
 function renderErrors(error) {
   return `<p class="error">${error}</p>`;
@@ -86,7 +87,7 @@ function listenErrors(...values) {
 function listenSubmit() {
   errors = [];
   const form = document.querySelector("#js-create-account-form");
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     console.log(e)
     e.preventDefault();
     const { username, email, firstname, lastname, password } =
@@ -101,7 +102,19 @@ function listenSubmit() {
     if (errors.length > 0) {
       DOMHandler.reload();
     } else {
-      DOMHandler.load(HomePage(), root);
+      const user = await signin({
+        username: username.value,
+        email: email.value,
+        first_name: firstname.value,
+        last_name: lastname.value,
+        password: password.value,
+      });
+      if (!user.token) {
+        errors.push(user);
+        DOMHandler.reload()
+      } else {
+        DOMHandler.load(HomePage(), root);
+      }
     }
   });
 }
