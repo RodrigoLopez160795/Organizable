@@ -4,6 +4,7 @@
     --font-logo:'Roboto', sans-serif;
 }
 .logo{
+    color: var(--gray-400);
     font-family: var(--font-logo);
     font-size: 1.5rem;
     line-height: 1.5rem;

@@ -1,5 +1,7 @@
+import { Logo } from "../components/logo.js";
+
 function render(){
-    return `<p class="logo">{ organizable }</p>`
+    return `${Logo()}`
 }
 
 function LoginPage() {
