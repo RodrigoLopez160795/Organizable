@@ -1,8 +1,10 @@
 import { Input } from "../components/input.js";
 import { Logo } from "../components/logo.js";
+import LoginPage from "./login-page.js";
+import DOMHandler from "../dom-handler.js";
 const errors = [];
 function render() {
-    return `
+  return `
       <section class="section">
         <div class="container login-page">
           ${Logo()}
@@ -25,21 +27,29 @@ function render() {
               alt: "Password logo",
             })}
             <button type="submit" class="button font-s upcase">Login</button>
-            <p class="text-center anchor-red font-reg">Create Account</p>
+            <p class="text-center anchor-red font-reg" id="js-login">Login</p>
           </form>
         </div>
       </section>
       `;
-  }
+}
 
-  function CreateAccountPage() {
-    return {
-      toString() {
-        return render();
-      },
-      addListeners() {
-      },
-    };
-  }
+function listenLogin() {
+  const account = document.querySelector("#js-login");
+  account.addEventListener("click", () => {
+    DOMHandler.load(LoginPage(), root);
+  });
+}
 
-  export default CreateAccountPage;
+function CreateAccountPage() {
+  return {
+    toString() {
+      return render();
+    },
+    addListeners() {
+      listenLogin();
+    },
+  };
+}
+
+export default CreateAccountPage;

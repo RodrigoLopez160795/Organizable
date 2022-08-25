@@ -6,8 +6,8 @@ import CreateAccountPage from "./create-account-page.js";
 import HomePage from "./home.js";
 
 let errors = [];
-function renderErrors(error){
-  return `<p class="error">${error}</p>`
+function renderErrors(error) {
+  return `<p class="error">${error}</p>`;
 }
 
 function render() {
@@ -42,8 +42,8 @@ function render() {
     `;
 }
 function listenErrors(...values) {
-  const [ username, password ] = values;
-  console.log(username,password)
+  const [username, password] = values;
+  console.log(username, password);
   if (username === "") {
     errors.push("Need to specify a username");
   }
@@ -52,27 +52,25 @@ function listenErrors(...values) {
   }
 }
 function listenSubmit() {
-  errors = []
+  errors = [];
   const form = document.querySelector("#js-login-form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const { username, password } = e.target.elements;
     listenErrors(username.value, password.value);
-    if(errors.length > 0){
+    if (errors.length > 0) {
       DOMHandler.reload();
-    }
-    else{
-      DOMHandler.load(HomePage(),root)
+    } else {
+      DOMHandler.load(HomePage(), root);
     }
   });
 }
 
-function listenCreate(){
+function listenCreate() {
   const account = document.querySelector("#js-create-account");
-  account.addEventListener("click",()=>{
-    DOMHandler.load(CreateAccountPage(),root)
-  })
-
+  account.addEventListener("click", () => {
+    DOMHandler.load(CreateAccountPage(), root);
+  });
 }
 
 function LoginPage() {
