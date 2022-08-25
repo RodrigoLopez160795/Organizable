@@ -2,6 +2,7 @@ import { Input } from "../components/input.js";
 import { Logo } from "../components/logo.js";
 import { root } from "../config.js";
 import DOMHandler from "../dom-handler.js";
+import { login } from "../services/sessions.js";
 import CreateAccountPage from "./create-account-page.js";
 import HomePage from "./home.js";
 
@@ -43,7 +44,6 @@ function render() {
 }
 function listenErrors(...values) {
   const [username, password] = values;
-  console.log(username, password);
   if (username === "") {
     errors.push("Need to specify a username");
   }
@@ -54,14 +54,23 @@ function listenErrors(...values) {
 function listenSubmit() {
   errors = [];
   const form = document.querySelector("#js-login-form");
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const { username, password } = e.target.elements;
     listenErrors(username.value, password.value);
     if (errors.length > 0) {
       DOMHandler.reload();
     } else {
-      DOMHandler.load(HomePage(), root);
+      const user = await login({
+        username: username.value,
+        password: password.value,
+      });
+      if (!user.token) {
+        errors.push(user);
+        DOMHandler.reload()
+      } else {
+        DOMHandler.load(HomePage(), root);
+      }
     }
   });
 }
