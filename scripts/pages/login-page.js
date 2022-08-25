@@ -1,5 +1,5 @@
 function render(){
-    return `<h1>Login</h1>`
+    return `<p class="logo">{ organizable }</p>`
 }
 
 function LoginPage() {
