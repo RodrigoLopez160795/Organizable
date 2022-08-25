@@ -17,3 +17,21 @@
 .mt-48{
     margin-top: 48px;
 }
+
+.flex{
+    display: flex;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.anchor-red{
+    color: var(--primary-400);
+    cursor: pointer;
+}
+
+.anchor-red:hover{
+    font-size: 1.125em;
+    transition: all .1s linear;
+}
