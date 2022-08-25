@@ -1,3 +1,3 @@
-export function Logo(){
-    return `<p class="logo text-center font-lg">{ organizable }</p>`
+export function Logo(extraClass="",isCenter=true){
+    return `<p class="logo ${isCenter? "text-center":""} font-lg ${extraClass} ">{ organizable }</p>`
 }
