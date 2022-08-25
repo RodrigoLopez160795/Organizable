@@ -27,12 +27,3 @@
     transition: background-color .5s ease;
 }
 
-.anchor-red{
-    color: var(--primary-400);
-    cursor: pointer;
-}
-
-.anchor-red:hover{
-    font-size: 1.125em;
-    transition: all .1s linear;
-}
