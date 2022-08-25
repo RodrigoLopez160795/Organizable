@@ -1,11 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
-
-:root{
-    --font-logo:'Roboto', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+:root {
+  --font-logo: "Roboto", sans-serif;
+  --font-titles: "Montserrat", sans-serif;
 }
-.logo{
-    color: var(--gray-400);
-    font-family: var(--font-logo);
-    font-size: 1.5rem;
-    line-height: 1.5rem;
+.logo {
+  color: var(--gray-400);
+  font-family: var(--font-logo);
+}
+
+.title {
+  color: var(--black);
+  font-family: var(--font-titles);
+}
+
+.font-lg {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+.font-xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
