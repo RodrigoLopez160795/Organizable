@@ -4,6 +4,7 @@ import LoginPage from "./login-page.js";
 import DOMHandler from "../dom-handler.js";
 import HomePage from "./home.js";
 import { signin } from "../services/sessions.js";
+import STORE from "../store.js";
 let errors = []
 function renderErrors(error) {
   return `<p class="error">${error}</p>`;
@@ -122,6 +123,7 @@ function listenSubmit() {
 function listenLogin() {
   const account = document.querySelector("#js-login");
   account.addEventListener("click", () => {
+    localStorage.setItem("current_page", STORE.pages.login())
     DOMHandler.load(LoginPage(), root);
   });
 }

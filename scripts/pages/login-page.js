@@ -3,6 +3,7 @@ import { Logo } from "../components/logo.js";
 import { root } from "../config.js";
 import DOMHandler from "../dom-handler.js";
 import { login } from "../services/sessions.js";
+import STORE from "../store.js";
 import CreateAccountPage from "./create-account-page.js";
 import HomePage from "./home.js";
 
@@ -78,6 +79,7 @@ function listenSubmit() {
 function listenCreate() {
   const account = document.querySelector("#js-create-account");
   account.addEventListener("click", () => {
+    localStorage.setItem("current_page", STORE.pages.create_account())
     DOMHandler.load(CreateAccountPage(), root);
   });
 }
