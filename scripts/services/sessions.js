@@ -34,4 +34,4 @@ async function signin(credentials = {username,email,first_name,last_name,passwor
 
 
 
-export { login };
+export { login, signin };
