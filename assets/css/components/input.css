@@ -1,0 +1,28 @@
+.input-main{
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+
+.input-container{
+    align-items: center;
+    background-color: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: .375rem;
+    gap: .6875rem;
+    display: flex;
+    padding: .5rem .75rem;
+}
+
+.input-container img{
+    height: 1.125rem;
+    width: 1.125rem;
+}
+
+.input-container input::placeholder{
+    color: var(--gray-200);
+}
+
+.label{
+    color: var(--gray-400);
+}

@@ -1,4 +1,13 @@
 :root{
+    --white:#FFFFFF;
     --black:#000000;
+    --gray-100:#F2F2F2;
+    --gray-200:#D3D3D3;
     --gray-400:#303036;
+    --secondary-300:#757575;
+    --primary-400:#E76A94;
+}
+
+body{
+    background-color: var(--gray-100);
 }

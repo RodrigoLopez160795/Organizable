@@ -2,12 +2,6 @@
     text-align: center;
 }
 
-.section{
-    margin-top: 96px;
-}
-
-.container{
-    max-width: 768px;
-    padding: 0px 32px;
-    margin: auto;
+.upcase{
+    text-transform: uppercase;
 }
