@@ -9,3 +9,11 @@
 .error{
     color: var(--error);
 }
+
+.mt-96{
+    margin-top: 96px;
+}
+
+.mt-48{
+    margin-top: 48px;
+}

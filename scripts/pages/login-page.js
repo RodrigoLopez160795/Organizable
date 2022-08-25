@@ -12,7 +12,7 @@ function renderErrors(error) {
 
 function render() {
   return `
-    <section class="section">
+    <section class="mt-96">
       <div class="container login-page">
         ${Logo()}
         <p class="text-center font-xl title">Login</p>
