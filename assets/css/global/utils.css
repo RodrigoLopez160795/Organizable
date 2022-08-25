@@ -5,3 +5,7 @@
 .upcase{
     text-transform: uppercase;
 }
+
+.error{
+    color: var(--error);
+}
