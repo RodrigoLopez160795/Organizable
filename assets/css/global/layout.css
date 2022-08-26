@@ -1,5 +1,9 @@
 .container{
-    max-width: 768px;
     padding: 0px 32px;
     margin: auto;
+}
+
+.section{
+    padding: 48px 0px;
+    width: 100%;
 }

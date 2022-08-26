@@ -20,7 +20,7 @@ function renderAsidePages() {
 }
 function render() {
   return `
-  <main class="main flex js-home-page">
+  <main class="flex js-home-page">
   ${Aside()}
   ${renderAsidePages()}
   </main>

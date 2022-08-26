@@ -58,7 +58,7 @@ function render() {
               type: "password",
               alt: "Password logo",
             })}
-            <button type="submit" class="button font-s upcase">create account</button>
+            <button type="submit" class="button-black font-s upcase">create account</button>
             <p class="text-center anchor-red font-reg" id="js-login">Login</p>
           </form>
         </div>
