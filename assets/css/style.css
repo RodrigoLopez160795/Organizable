@@ -3,7 +3,8 @@
 @import url('./global/colors.css');
 @import url('./global/utils.css');
 @import url('./global/layout.css');
+@import url('./global/buttons.css');
 @import url('./components/input.css');
 @import url('./components/sign.css');
-@import url('./components/home.css');
 @import url('./components/aside.css');
+@import url('./components/my-profile.css');
