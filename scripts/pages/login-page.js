@@ -70,6 +70,7 @@ function listenSubmit() {
         errors.push(user);
         DOMHandler.reload()
       } else {
+        localStorage.setItem("current_page", STORE.pages.my_boards())
         DOMHandler.load(HomePage(), root);
       }
     }
