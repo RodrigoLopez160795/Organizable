@@ -4,7 +4,7 @@ import CreateAccountPage from "./pages/create-account-page.js";
 import HomePage from "./pages/home.js";
 import LoginPage from "./pages/login-page.js";
 import STORE from "./store.js";
-
+//ToDo check initial page
 function App() {
   let token = sessionStorage.getItem(tokenKey);
   const page = STORE.currentPage();

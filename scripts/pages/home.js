@@ -30,6 +30,7 @@ function render() {
 function listenLogout() {
   const signout = document.querySelector(".js-logout");
   signout.addEventListener("click", () => {
+    localStorage.setItem("current_page", STORE.pages.login())
     logout().then(DOMHandler.load(LoginPage(), root));
   });
 }
