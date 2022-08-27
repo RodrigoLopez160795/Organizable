@@ -9,7 +9,7 @@ export function Input({ label, placeholder, icon, name, type, alt, value = "" })
           placeholder="${placeholder}"
           id="${name}"
           value = "${value}"
-          class="text-reg">
+          class="text-reg w-100">
       </div>
     </div>
     `;

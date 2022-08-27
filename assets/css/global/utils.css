@@ -39,3 +39,7 @@
     font-size: 1.125em;
     transition: all .1s linear;
 }
+
+.w-100{
+    width: 100%;
+}
