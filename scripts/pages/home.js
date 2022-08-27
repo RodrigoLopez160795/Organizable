@@ -121,7 +121,7 @@ function listenDeleteUser(){
     const getUser = STORE.getUserValues()
     localStorage.setItem("current_page", STORE.pages.login());
     localStorage.removeItem(userKey);
-    deleteUser(getUser.id).then(DOMHandler.load(HomePage(),root))
+    deleteUser(getUser.id).then(DOMHandler.load(LoginPage(),root))
     })
 }
 
