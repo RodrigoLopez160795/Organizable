@@ -4,7 +4,7 @@ import { MyBoards } from "../components/my-boards.js";
 import { MyProfile } from "../components/my-profile.js";
 import { root, userKey } from "../config.js";
 import DOMHandler from "../dom-handler.js";
-import { logout, update } from "../services/sessions.js";
+import { deleteUser, logout, update } from "../services/sessions.js";
 import STORE from "../store.js";
 import LoginPage from "./login-page.js";
 
@@ -115,6 +115,16 @@ function listenUpdateUser() {
   });
 }
 
+function listenDeleteUser(){
+  const user = document.querySelector("#js-delete-user");
+  user.addEventListener("click",()=>{
+    const getUser = STORE.getUserValues()
+    localStorage.setItem("current_page", STORE.pages.login());
+    localStorage.removeItem(userKey);
+    deleteUser(getUser.id).then(DOMHandler.load(HomePage(),root))
+    })
+}
+
 function HomePage() {
   return {
     toString() {
@@ -125,8 +135,11 @@ function HomePage() {
       listenMyBoards();
       listenClosedBoards();
       listenMyProfile();
-      listenErrors();
-      listenUpdateUser();
+      if(localStorage.getItem("current_page") === STORE.pages.my_profile()){
+        listenUpdateUser();
+        listenDeleteUser();
+        listenErrors();
+      }
     },
   };
 }

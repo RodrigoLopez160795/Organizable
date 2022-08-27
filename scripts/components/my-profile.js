@@ -51,7 +51,7 @@ export function MyProfile(errors){
                 value: user.lastname
               })}
               <button type="submit" class="button-red font-s upcase">Update profile</button>
-              <button class="button-black font-s upcase">Delete my account</button>
+              <button class="button-black font-s upcase" id="js-delete-user">Delete my account</button>
             </form>
         </div>
     </section>
