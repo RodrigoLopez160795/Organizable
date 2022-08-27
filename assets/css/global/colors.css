@@ -10,8 +10,54 @@
     --primary-400:#E76A94;
     --primary-500:#D44A78;
     --error:#FC0101;
+    /* Boards colors */
+    --light-green:#90DBAF;
+    --light-red:#F77474;
+    --magic-blue:#60B5E5;
+    --orange:#FFA759;
+    --violet:#C499EC;
+    --pink:#FABBD0;
+    --green:#42D781;
+    --gray:#BDBDBD;
+    --light-blue:#9DE0F9;
 }
 
 body{
     background-color: var(--gray-100);
+}
+
+.magic-blue{
+    background-color: var(--magic-blue);
+}
+
+.light-green{
+    background-color: var(--light-green);
+}
+
+.light-red{
+    background-color: var(--light-red);
+}
+
+.orange{
+    background-color: var(--orange);
+}
+
+.violet{
+    background-color: var(--violet);
+}
+
+.pink{
+    background-color: var(--pink);
+}
+
+.green{
+    background-color: var(--green);
+}
+
+.gray{
+    background-color: var(--gray);
+}
+
+.light-blue{
+    background-color: var(--light-blue);
 }
