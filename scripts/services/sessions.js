@@ -31,6 +31,7 @@ async function signin(
     return user.errors.message;
   }
   sessionStorage.setItem(tokenKey, user.token);
+  console.log(user)
   return user;
 }
 

@@ -37,7 +37,7 @@ export function MyProfile(){
                 name: "firstname",
                 type: "text",
                 alt: "Folder logo",
-                value: user.first_name
+                value: user.firstname
               })}
               ${Input({
                 label: "last name",
@@ -46,7 +46,7 @@ export function MyProfile(){
                 name: "lastname",
                 type: "text",
                 alt: "Folder logo",
-                value: user.last_name
+                value: user.lastname
               })}
               <button type="submit" class="button-red font-s upcase">Update profile</button>
               <button class="button-black font-s upcase">Delete my account</button>

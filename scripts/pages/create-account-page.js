@@ -89,7 +89,6 @@ function listenSubmit() {
   errors = [];
   const form = document.querySelector("#js-create-account-form");
   form.addEventListener("submit", async (e) => {
-    console.log(e)
     e.preventDefault();
     const { username, email, firstname, lastname, password } =
       e.target.elements;
@@ -114,6 +113,13 @@ function listenSubmit() {
         errors.push(user);
         DOMHandler.reload()
       } else {
+        STORE.setUserInLocalStorage({
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          firstname: user.firstName,
+          lastname: user.lastName,
+        });
         localStorage.setItem("current_page", STORE.pages.my_boards())
         DOMHandler.load(HomePage(), root);
       }

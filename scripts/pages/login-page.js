@@ -74,8 +74,8 @@ function listenSubmit() {
           id: user.id,
           username: user.username,
           email: user.email,
-          firstname: user.firstname,
-          lastname: user.lastname,
+          firstname: user.firstName,
+          lastname: user.lastName,
         });
         localStorage.setItem("current_page", STORE.pages.my_boards());
         DOMHandler.load(HomePage(), root);
