@@ -1,4 +1,4 @@
-export function Input({ label, placeholder, icon, name, type, alt }) {
+export function Input({ label, placeholder, icon, name, type, alt, value = "" }) {
   return `
   <div class="input-main">
       <label for="${name}" class="upcase label font-xs">${label}</label>
@@ -8,6 +8,7 @@ export function Input({ label, placeholder, icon, name, type, alt }) {
           name="${name}"
           placeholder="${placeholder}"
           id="${name}"
+          value = "${value}"
           class="text-reg">
       </div>
     </div>

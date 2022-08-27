@@ -30,37 +30,35 @@ function render() {
 function listenLogout() {
   const signout = document.querySelector(".js-logout");
   signout.addEventListener("click", () => {
-    localStorage.setItem("current_page", STORE.pages.login())
-    localStorage.removeItem(userKey)
+    localStorage.setItem("current_page", STORE.pages.login());
+    localStorage.removeItem(userKey);
     logout().then(DOMHandler.load(LoginPage(), root));
   });
 }
 
-function listenMyBoards(){
+function listenMyBoards() {
   const myBoards = document.querySelector(".js-my-boards");
-  myBoards.addEventListener("click",()=>{
-    localStorage.setItem("current_page", STORE.pages.my_boards())
+  myBoards.addEventListener("click", () => {
+    localStorage.setItem("current_page", STORE.pages.my_boards());
     DOMHandler.reload();
-  })
+  });
 }
 
-function lsitenMyProfile(){
+function lsitenMyProfile() {
   const myBoards = document.querySelector(".js-my-profile");
-  myBoards.addEventListener("click",()=>{
-    localStorage.setItem("current_page", STORE.pages.my_profile())
+  myBoards.addEventListener("click", () => {
+    localStorage.setItem("current_page", STORE.pages.my_profile());
     DOMHandler.reload();
-  })
+  });
 }
 
-function listenClosedBoards(){
+function listenClosedBoards() {
   const myBoards = document.querySelector(".js-closed-boards");
-  myBoards.addEventListener("click",()=>{
-    localStorage.setItem("current_page", STORE.pages.closed_boards())
+  myBoards.addEventListener("click", () => {
+    localStorage.setItem("current_page", STORE.pages.closed_boards());
     DOMHandler.reload();
-  })
+  });
 }
-
-
 
 function HomePage() {
   return {
