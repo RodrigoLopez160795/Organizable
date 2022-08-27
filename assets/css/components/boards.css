@@ -1,3 +1,14 @@
+.my-boards-container{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.boards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
 .boards-container{
     display: flex;
     flex-wrap: wrap;
@@ -5,6 +16,16 @@
 }
 
 .board{
-    max-width: 190px;
-    width: 100%;
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    padding: .5rem;
+    width: 190px;
+}
+
+.board-buttons-container{
+    display: flex;
+    justify-content: flex-end;
+    gap: .625rem;
 }
