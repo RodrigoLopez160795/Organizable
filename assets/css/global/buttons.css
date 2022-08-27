@@ -1,27 +1,61 @@
-.button-black{
-    background-color: var(--secondary-300);
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-    color: var(--white);
-    cursor: pointer;
-    font-weight: 500;
-    padding: .5rem 1rem;
+.button-black {
+  background-color: var(--secondary-300);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  color: var(--white);
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
 }
 
-.button-black:hover{
-    background-color: var(--black);
+.button-black:hover {
+  background-color: var(--black);
+  transition: background-color 0.5s ease;
+}
+
+.button-red {
+  background-color: var(--primary-300);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  color: var(--white);
+  cursor: pointer;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+}
+
+.button-red:hover {
+  background-color: var(--primary-500);
+  transition: background-color 0.5s ease;
+}
+
+.board-button {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  height: 1.5rem;
+  justify-content: center;
+  width: 1.5rem;
+}
+
+.board-button img{
+    height: 1.25rem;
+    width: 1.25rem;
+}
+
+.board-button:hover{
+    background-color: var(--white);
     transition: background-color .5s ease;
 }
 
-.button-red{
-    background-color: var(--primary-300);
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-    color: var(--white);
+.create-board-button{
+    border: 3px solid var(--gray-300);
+    border-radius: .5rem;
     cursor: pointer;
-    font-weight: 500;
-    padding: .5rem 1rem;
+    padding: .5rem;
+    width: 190px;
 }
 
-.button-red:hover{
-    background-color: var(--primary-500);
-    transition: background-color .5s ease;
+.create-board-button:hover{
+    color: green;
+    transition: color .5s ease;
 }
