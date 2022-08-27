@@ -73,4 +73,23 @@ async function update(
   return user;
 }
 
-export { login, signin, logout,update};
+async function deleteUser(id){
+  const token = sessionStorage.getItem(tokenKey);
+  const response = await fetch(`${BASE_URI}/users/${id}`,{
+    headers:{
+      Authorization: `Token token=${token}`,
+    },
+    method:"DELETE"
+  })
+  let data;
+  try {
+    data = await response.json();
+  } catch (error) {
+    data = response.status.text;
+  }
+  if (!response.ok) throw new Error(data.errors);
+  sessionStorage.removeItem(tokenKey, response.token);
+  return data;
+}
+
+export { login, signin, logout,update,deleteUser};
