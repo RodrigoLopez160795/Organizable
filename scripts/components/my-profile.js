@@ -5,13 +5,19 @@ function getUserValues(){
  const user = localStorage.getItem(userKey)
  return JSON.parse(user)
 }
-export function MyProfile(){
+
+function renderErrors(error) {
+  return `<p class="error">${error}</p>`;
+}
+
+export function MyProfile(errors){
   const user = getUserValues()
     return `
     <section class="section">
         <div class="container profile-content">
             <p class="title font-xl">My profile</p>
-            <form class="profile-form">
+            <form class="profile-form" id="js-update-user">
+            ${errors.map(renderErrors).join("")}
             ${Input({
                 label: "username",
                 placeholder: "RoLo",

@@ -4,16 +4,19 @@ import { MyBoards } from "../components/my-boards.js";
 import { MyProfile } from "../components/my-profile.js";
 import { root, userKey } from "../config.js";
 import DOMHandler from "../dom-handler.js";
-import { logout } from "../services/sessions.js";
+import { logout, update } from "../services/sessions.js";
 import STORE from "../store.js";
 import LoginPage from "./login-page.js";
+
+let errors = [];
+
 
 function renderAsidePages() {
   switch (STORE.currentPage()) {
     case STORE.pages.my_boards():
       return MyBoards();
     case STORE.pages.my_profile():
-      return MyProfile();
+      return MyProfile(errors);
     case STORE.pages.closed_boards():
       return ClosedBoards();
   }
@@ -25,6 +28,22 @@ function render() {
   ${renderAsidePages()}
   </main>
   `;
+}
+
+function listenErrors(...values) {
+  const [username, email, firstname, lastname] = values;
+  if (username === "") {
+    errors.push("Need to specify a username");
+  }
+  if (email === "") {
+    errors.push("Need to specify email");
+  }
+  if (firstname === "") {
+    errors.push("Need to specify firstname");
+  }
+  if (lastname === "") {
+    errors.push("Need to specify lastname");
+  }
 }
 
 function listenLogout() {
@@ -44,7 +63,7 @@ function listenMyBoards() {
   });
 }
 
-function lsitenMyProfile() {
+function listenMyProfile() {
   const myBoards = document.querySelector(".js-my-profile");
   myBoards.addEventListener("click", () => {
     localStorage.setItem("current_page", STORE.pages.my_profile());
@@ -60,6 +79,24 @@ function listenClosedBoards() {
   });
 }
 
+function listenUpdateUser() {
+  const user = document.querySelector("#js-update-user");
+  user.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const { username, email, firstname, lastname, password } =
+      e.target.elements;
+    listenErrors(
+      username.value,
+      email.value,
+      firstname.value,
+      lastname.value,
+    );
+    if (errors.length > 0) {
+      DOMHandler.reload();
+    }
+  });
+}
+
 function HomePage() {
   return {
     toString() {
@@ -69,7 +106,9 @@ function HomePage() {
       listenLogout();
       listenMyBoards();
       listenClosedBoards();
-      lsitenMyProfile();
+      listenMyProfile();
+      listenErrors();
+      listenUpdateUser();
     },
   };
 }
