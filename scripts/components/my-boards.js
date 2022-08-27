@@ -1,3 +1,11 @@
 export function MyBoards(){
-    return `<h1>My boards</h1>`
+    return `
+    <section class="section">
+      <div class="container">
+        <p class="title font-xl">My boards</p>
+        <p class="title font-lg">Boards</p>
+      </div>
+    </section>
+    
+    `
 }
