@@ -37,6 +37,11 @@ body {
   line-height: 1.5rem;
 }
 
+.font-boards{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .font-lg {
   font-size: 1.5rem;
   line-height: 2rem;
