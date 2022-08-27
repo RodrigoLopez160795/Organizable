@@ -83,7 +83,7 @@ function listenUpdateUser() {
   const user = document.querySelector("#js-update-user");
   user.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const { username, email, firstname, lastname, password } =
+    const { username, email, firstname, lastname } =
       e.target.elements;
     listenErrors(
       username.value,
@@ -93,6 +93,24 @@ function listenUpdateUser() {
     );
     if (errors.length > 0) {
       DOMHandler.reload();
+    }else{
+      const getUser = STORE.getUserValues()
+
+      const updatedUser = await update(getUser.id,{
+        username: username.value,
+        email: email.value,
+        first_name: firstname.value,
+        last_name: lastname.value,
+      });
+      STORE.setUserInLocalStorage({
+        id: updatedUser.id,
+        username: updatedUser.username,
+        email: updatedUser.email,
+        firstname: updatedUser.firstName,
+        lastname: updatedUser.lastName,
+      });
+      localStorage.setItem("current_page", STORE.pages.my_boards())
+      DOMHandler.load(HomePage(),root)
     }
   });
 }

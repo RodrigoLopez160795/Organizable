@@ -1,17 +1,13 @@
 import { userKey } from "../config.js";
+import STORE from "../store.js";
 import { Input } from "./input.js";
-
-function getUserValues(){
- const user = localStorage.getItem(userKey)
- return JSON.parse(user)
-}
 
 function renderErrors(error) {
   return `<p class="error">${error}</p>`;
 }
 
 export function MyProfile(errors){
-  const user = getUserValues()
+  const user = STORE.getUserValues()
     return `
     <section class="section">
         <div class="container profile-content">
