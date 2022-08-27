@@ -31,7 +31,6 @@ async function signin(
     return user.errors.message;
   }
   sessionStorage.setItem(tokenKey, user.token);
-  console.log(user)
   return user;
 }
 
@@ -45,13 +44,33 @@ async function logout() {
   });
   let data;
   try {
-    data = await response.json()
+    data = await response.json();
   } catch (error) {
-    data = response.status.text
+    data = response.status.text;
   }
   if (!response.ok) throw new Error(data.errors);
   sessionStorage.removeItem(tokenKey, response.token);
   return data;
 }
 
-export { login, signin, logout };
+async function update(
+  id,
+  credentials = { username, email, first_name, last_name }
+) {
+  const token = sessionStorage.getItem(tokenKey);
+  const response = await fetch(`${BASE_URI}/users/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Token token=${token}`,
+    },
+    method: "PATCH",
+    body: JSON.stringify(credentials),
+  });
+  const user = await response.json();
+  if (!response.ok) {
+    return user.errors.message;
+  }
+  return user;
+}
+
+export { login, signin, logout,update};
