@@ -1,6 +1,12 @@
+import { userKey } from "../config.js";
 import { Input } from "./input.js";
 
+function getUserValues(){
+ const user = localStorage.getItem(userKey)
+ return JSON.parse(user)
+}
 export function MyProfile(){
+  const user = getUserValues()
     return `
     <section class="section">
         <div class="container profile-content">
@@ -13,6 +19,7 @@ export function MyProfile(){
                 name: "username",
                 type: "text",
                 alt: "Username logo",
+                value: user.username
               })}
               ${Input({
                 label: "email",
@@ -21,6 +28,7 @@ export function MyProfile(){
                 name: "email",
                 type: "email",
                 alt: "Email logo",
+                value: user.email
               })}
               ${Input({
                 label: "first name",
@@ -29,6 +37,7 @@ export function MyProfile(){
                 name: "firstname",
                 type: "text",
                 alt: "Folder logo",
+                value: user.first_name
               })}
               ${Input({
                 label: "last name",
@@ -37,6 +46,7 @@ export function MyProfile(){
                 name: "lastname",
                 type: "text",
                 alt: "Folder logo",
+                value: user.last_name
               })}
               <button type="submit" class="button-red font-s upcase">Update profile</button>
               <button class="button-black font-s upcase">Delete my account</button>
