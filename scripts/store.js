@@ -15,6 +15,10 @@ const STORE = {
   setUserInLocalStorage(user = { id, username, email, firstname, lastname }) {
     localStorage.setItem(userKey, JSON.stringify(user));
   },
+  getUserValues() {
+    const user = localStorage.getItem(userKey);
+    return JSON.parse(user);
+  },
 };
 
 export default STORE;
