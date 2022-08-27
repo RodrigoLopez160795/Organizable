@@ -2,7 +2,7 @@ import { Aside } from "../components/aside.js";
 import { ClosedBoards } from "../components/closed-boards.js";
 import { MyBoards } from "../components/my-boards.js";
 import { MyProfile } from "../components/my-profile.js";
-import { root } from "../config.js";
+import { root, userKey } from "../config.js";
 import DOMHandler from "../dom-handler.js";
 import { logout } from "../services/sessions.js";
 import STORE from "../store.js";
@@ -31,6 +31,7 @@ function listenLogout() {
   const signout = document.querySelector(".js-logout");
   signout.addEventListener("click", () => {
     localStorage.setItem("current_page", STORE.pages.login())
+    localStorage.removeItem(userKey)
     logout().then(DOMHandler.load(LoginPage(), root));
   });
 }

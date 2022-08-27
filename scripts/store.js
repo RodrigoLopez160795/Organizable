@@ -1,3 +1,5 @@
+import { userKey } from "./config.js";
+
 const STORE = {
   pages: {
     login: () => `login_page`,
@@ -9,6 +11,9 @@ const STORE = {
   },
   currentPage() {
     return localStorage.getItem("current_page") || this.pages.login();
+  },
+  setUserInLocalStorage(user = { id, username, email, firstname, lastname }) {
+    localStorage.setItem(userKey, JSON.stringify(user));
   },
 };
 

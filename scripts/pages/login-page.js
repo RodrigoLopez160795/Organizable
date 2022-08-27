@@ -68,9 +68,16 @@ function listenSubmit() {
       });
       if (!user.token) {
         errors.push(user);
-        DOMHandler.reload()
+        DOMHandler.reload();
       } else {
-        localStorage.setItem("current_page", STORE.pages.my_boards())
+        STORE.setUserInLocalStorage({
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          firstname: user.firstname,
+          lastname: user.lastname,
+        });
+        localStorage.setItem("current_page", STORE.pages.my_boards());
         DOMHandler.load(HomePage(), root);
       }
     }
@@ -80,7 +87,7 @@ function listenSubmit() {
 function listenCreate() {
   const account = document.querySelector("#js-create-account");
   account.addEventListener("click", () => {
-    localStorage.setItem("current_page", STORE.pages.create_account())
+    localStorage.setItem("current_page", STORE.pages.create_account());
     DOMHandler.load(CreateAccountPage(), root);
   });
 }
