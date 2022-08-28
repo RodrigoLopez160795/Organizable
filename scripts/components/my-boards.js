@@ -13,13 +13,13 @@ async function renderBoards(){
     </div>
   `
   ),"")
-  return renderBoard(result,boardsListeners())
+  return renderBoard(result)
 }
 
 function renderBoard(boards){
   const element = document.querySelector(".js-boards");
   element.innerHTML = boards;
-  boardsListeners()
+
 }
 
 export function MyBoards(){
@@ -38,7 +38,3 @@ export function MyBoards(){
     `
 }
 
-function boardsListeners(){
-  const boards = document.querySelectorAll(".js-board")
-
-}

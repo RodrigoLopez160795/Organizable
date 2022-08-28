@@ -9,3 +9,12 @@
 @import url('./components/aside.css');
 @import url('./components/my-profile.css');
 @import url('./components/boards.css');
+
+.js-opacity{
+    filter:brightness(30%);
+}
+
+/* 
+aside 
+
+*/

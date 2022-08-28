@@ -14,12 +14,12 @@
     color: var(--error);
 }
 
-.mt-96{
-    margin-top: 96px;
+.p-96{
+    padding-top: 96px;
 }
 
-.mt-48{
-    margin-top: 48px;
+.p-48{
+    padding-top: 48px;
 }
 
 .flex{

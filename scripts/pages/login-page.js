@@ -14,7 +14,7 @@ function renderErrors(error) {
 
 function render() {
   return `
-    <section class="mt-96">
+    <section class="p-96 app">
       <div class="container login-page">
         ${Logo()}
         <p class="text-center font-xl title">Login</p>

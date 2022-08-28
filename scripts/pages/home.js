@@ -23,7 +23,7 @@ function renderAsidePages() {
 }
 function render() {
   return `
-  <main class="flex js-home-page">
+  <main class="flex js-home-page app ">
   ${Aside()}
   ${renderAsidePages()}
   </main>
@@ -125,6 +125,14 @@ function listenDeleteUser(){
     })
 }
 
+function createBoard(){
+  const create = document.querySelector("#js-create-board");
+  create.addEventListener("click",()=>{
+    const opacity = document.querySelector(".js-home-page")
+    opacity.classList.toggle("js-opacity")
+  })
+}
+
 function HomePage() {
   return {
     toString() {
@@ -139,6 +147,9 @@ function HomePage() {
         listenUpdateUser();
         listenDeleteUser();
         listenErrors();
+      }
+      if(localStorage.getItem("current_page") === STORE.pages.my_boards()){
+        createBoard()
       }
     },
   };

@@ -23,7 +23,7 @@
     --light-blue:#9DE0F9;
 }
 
-body{
+.app{
     background-color: var(--gray-100);
 }
 
