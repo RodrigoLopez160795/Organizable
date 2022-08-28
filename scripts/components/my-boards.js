@@ -25,7 +25,7 @@ function renderBoard(boards){
 export function MyBoards(){
   renderBoards()
     return `
-    <section class="section">
+    <section class="section js-add-opacity2">
       <div class="container my-boards-container">
         <p class="title font-xl">My boards</p>
         <p class="title font-lg">Boards</p>

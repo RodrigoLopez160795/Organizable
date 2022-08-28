@@ -1,35 +1,92 @@
-.my-boards-container{
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.my-boards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.boards{
+.boards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.boards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.board {
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  padding: 0.5rem;
+  width: 190px;
+}
+
+.board-buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.625rem;
+}
+
+
+.board-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  z-index: 100;
+}
+
+.board-form p{
+    cursor: pointer;
+    color: var(--green);
+    width: 19.2px;
+    height: 19.2px;
+}
+
+.board-form-container{
     display: flex;
-    flex-wrap: wrap;
     gap: 1rem;
 }
-.boards-container{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+
+.create-board-container {
+  background-color: var(--light-green);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 190px;
+  padding: 0.5rem;
 }
 
-.board{
-    border-radius: .5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.75rem;
-    padding: .5rem;
-    width: 190px;
+.create-board-container-input {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  color: var(--gray-300);
+  padding: 0px 4px;
 }
 
-.board-buttons-container{
-    display: flex;
-    justify-content: flex-end;
-    gap: .625rem;
+.create-board-container-button {
+  align-self: flex-end;
+  background-color: var(--gray-100);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 6px 10px;
 }
 
-.js-opacity{
-    filter:brightness(30%);
+.board-colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-width: 112px;
+}
+
+.js-opacity {
+  filter: brightness(30%);
 }

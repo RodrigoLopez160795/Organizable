@@ -27,8 +27,53 @@
     background-color: var(--gray-100);
 }
 
-.magic-blue{
+[name="color"]{
+    appearance: none;
+    border: none;
+    border-radius: .25rem;
+    cursor: pointer;
+    height: 32px;
+    width: 32px;
+}
+
+[name="color"]:checked {
+    border: 2px solid var(--black)!important;
+}
+
+[name="color"][value="light-green"]{
+    background-color: var(--light-green);
+}
+
+[name="color"][value="light-red"]{
+    background-color: var(--light-red);
+}
+
+[name="color"][value="magic-blue"]{
     background-color: var(--magic-blue);
+}
+
+[name="color"][value="orange"]{
+    background-color: var(--orange);
+}
+
+[name="color"][value="violet"]{
+    background-color: var(--violet);
+}
+
+[name="color"][value="pink"]{
+    background-color: var(--pink);
+}
+
+[name="color"][value="green"]{
+    background-color: var(--green);
+}
+
+[name="color"][value="gray"]{
+    background-color: var(--gray);
+}
+
+[name="color"][value="light-blue"]{
+    background-color: var(--light-blue);
 }
 
 .light-green{
@@ -37,6 +82,10 @@
 
 .light-red{
     background-color: var(--light-red);
+}
+
+.magic-blue{
+    background-color: var(--magic-blue);
 }
 
 .orange{

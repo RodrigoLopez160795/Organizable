@@ -2,7 +2,7 @@ import { Logo } from "./logo.js";
 
 export function Aside(){
     return `
-    <aside class="aside">
+    <aside class="aside js-add-opacity1">
       <div class="aside-top">
         ${Logo("item-padding",false)}
         <div class="flex aside-item aside-nav-item js-my-boards">

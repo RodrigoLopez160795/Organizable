@@ -1,5 +1,6 @@
 import { Aside } from "../components/aside.js";
 import { ClosedBoards } from "../components/closed-boards.js";
+import { CreateBoard } from "../components/create-board.js";
 import { MyBoards } from "../components/my-boards.js";
 import { MyProfile } from "../components/my-profile.js";
 import { root, userKey } from "../config.js";
@@ -9,7 +10,6 @@ import STORE from "../store.js";
 import LoginPage from "./login-page.js";
 
 let errors = [];
-
 
 function renderAsidePages() {
   switch (STORE.currentPage()) {
@@ -22,7 +22,10 @@ function renderAsidePages() {
   }
 }
 function render() {
+  const currentPage = STORE.currentPage();
+  const myBoard = STORE.pages.my_boards();
   return `
+  ${currentPage === myBoard ? CreateBoard() : ""}
   <main class="flex js-home-page app ">
   ${Aside()}
   ${renderAsidePages()}
@@ -83,20 +86,14 @@ function listenUpdateUser() {
   const user = document.querySelector("#js-update-user");
   user.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const { username, email, firstname, lastname } =
-      e.target.elements;
-    listenErrors(
-      username.value,
-      email.value,
-      firstname.value,
-      lastname.value,
-    );
+    const { username, email, firstname, lastname } = e.target.elements;
+    listenErrors(username.value, email.value, firstname.value, lastname.value);
     if (errors.length > 0) {
       DOMHandler.reload();
-    }else{
-      const getUser = STORE.getUserValues()
+    } else {
+      const getUser = STORE.getUserValues();
 
-      const updatedUser = await update(getUser.id,{
+      const updatedUser = await update(getUser.id, {
         username: username.value,
         email: email.value,
         first_name: firstname.value,
@@ -109,29 +106,38 @@ function listenUpdateUser() {
         firstname: updatedUser.firstName,
         lastname: updatedUser.lastName,
       });
-      localStorage.setItem("current_page", STORE.pages.my_boards())
-      DOMHandler.load(HomePage(),root)
+      localStorage.setItem("current_page", STORE.pages.my_boards());
+      DOMHandler.load(HomePage(), root);
     }
   });
 }
 
-function listenDeleteUser(){
+function listenDeleteUser() {
   const user = document.querySelector("#js-delete-user");
-  user.addEventListener("click",()=>{
-    const getUser = STORE.getUserValues()
+  user.addEventListener("click", () => {
+    const getUser = STORE.getUserValues();
     localStorage.setItem("current_page", STORE.pages.login());
     localStorage.removeItem(userKey);
-    deleteUser(getUser.id).then(DOMHandler.load(LoginPage(),root))
-    })
+    deleteUser(getUser.id).then(DOMHandler.load(LoginPage(), root));
+  });
 }
 
-function createBoard(){
+function createBoard() {
   const create = document.querySelector("#js-create-board");
-  create.addEventListener("click",()=>{
-    const opacity = document.querySelector(".js-home-page")
-    opacity.classList.toggle("js-opacity")
-  })
+  const close = document.querySelector(".js-close-create")
+  const opacity = document.querySelector(".js-home-page");
+  const form = document.querySelector(".js-create-board-form")
+  create.addEventListener("click", () => {
+    opacity.classList.add("js-opacity");
+    form.classList.toggle("display-none");
+  });
+   close.addEventListener("click",()=>{
+    opacity.classList.remove("js-opacity");
+    form.classList.toggle("display-none");
+   })
 }
+
+
 
 function HomePage() {
   return {
@@ -143,13 +149,13 @@ function HomePage() {
       listenMyBoards();
       listenClosedBoards();
       listenMyProfile();
-      if(localStorage.getItem("current_page") === STORE.pages.my_profile()){
+      if (localStorage.getItem("current_page") === STORE.pages.my_profile()) {
         listenUpdateUser();
         listenDeleteUser();
         listenErrors();
       }
-      if(localStorage.getItem("current_page") === STORE.pages.my_boards()){
-        createBoard()
+      if (localStorage.getItem("current_page") === STORE.pages.my_boards()) {
+        createBoard();
       }
     },
   };
