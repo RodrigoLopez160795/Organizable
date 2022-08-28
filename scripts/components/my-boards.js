@@ -1,33 +1,73 @@
-import { getBoards } from "../services/boards.js"
+import DOMHandler from "../dom-handler.js";
+import { boardStarred, getBoards } from "../services/boards.js";
 
-async function renderBoards(){
+function isThereABoard(boards, boolean) {
+  const result = boards.filter((board) => board.starred === boolean);
+  if (result.length > 0) return true;
+}
+
+async function renderBoards() {
   const boards = await getBoards();
-  let result= boards.reduce((boardsArr,board)=>
-  (boardsArr += `
-    <div class="${board.color.split(" ").join("-")} board js-board">
+  let starredBoards = "";
+  let boardsLists = "";
+  if (isThereABoard(boards, true)) {
+    starredBoards = boards
+      .filter((board) => board.starred === true)
+      .reduce(
+        (boardsArr, board) =>
+          (boardsArr += `
+    <div class="${board.color.split(" ").join("-")} board js-board data-starred = "true">
       <p class="font-boards">${board.name}</p>
       <div class="board-buttons-container">
         <button class="board-button"><img src="./assets/images/trashBoard.svg"></button>
-        <button class="board-button"><img src="./assets/images/star.svg"></button>
+        <button class="board-button js-starred" id="${
+          board.id
+        }"><img src="./assets/images/starBlack.svg" id="${board.id}"></button>
       </div>
     </div>
-  `
-  ),"")
-  return renderBoard(result)
+  `),
+        ""
+      );
+  }
+  if (isThereABoard(boards, false)) {
+    boardsLists = boards
+      .filter((board) => board.starred === false)
+      .reduce(
+        (boardsArr, board) =>
+          (boardsArr += `
+      <div class="${board.color.split(" ").join("-")} board js-board" data-starred = "false">
+        <p class="font-boards">${board.name}</p>
+        <div class="board-buttons-container">
+          <button class="board-button"><img src="./assets/images/trashBoard.svg"></button>
+          <button class="board-button js-starred" id="${
+            board.id
+          }"><img src="./assets/images/star.svg" id="${board.id}"></button>
+        </div>
+      </div>
+    `),
+        ""
+      );
+  }
+  return renderBoard(boardsLists, starredBoards,boards);
 }
 
-function renderBoard(boards){
-  const element = document.querySelector(".js-boards");
-  element.innerHTML = boards;
-
+function renderBoard(boards, starred,boardsList) {
+  const normalBoards = document.querySelector(".js-boards");
+  const starredBoards = document.querySelector(".js-starred-boards");
+  normalBoards.innerHTML = boards;
+  starredBoards.innerHTML = starred;
+  listenStarred(boardsList);
 }
 
-export function MyBoards(){
-  renderBoards()
-    return `
+export function MyBoards() {
+  renderBoards();
+
+  return `
     <section class="section js-add-opacity2">
       <div class="container my-boards-container">
         <p class="title font-xl">My boards</p>
+        <p class="title font-lg">Starred boards</p>
+        <div class="js-starred-boards boards-container"></div>
         <p class="title font-lg">Boards</p>
         <div class="boards">
         <div class="js-boards boards-container"></div>
@@ -35,6 +75,17 @@ export function MyBoards(){
         </div>
       </div>
     </section>
-    `
+    `;
 }
 
+function listenStarred(boardsList) {
+  // const boards = document.querySelectorAll(".js-board");
+  const starreds = document.querySelectorAll(".js-starred");
+  starreds.forEach((starred) => {
+    starred.addEventListener("click",async ({ target }) => {
+      const id = target.id;
+      const boardSelected = boardsList.find((board) => board.id === parseInt(id))
+      await boardStarred(id,{starred:!boardSelected.starred})
+    });
+  });
+}

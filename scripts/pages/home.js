@@ -5,6 +5,7 @@ import { MyBoards } from "../components/my-boards.js";
 import { MyProfile } from "../components/my-profile.js";
 import { root, userKey } from "../config.js";
 import DOMHandler from "../dom-handler.js";
+import { createBoards } from "../services/boards.js";
 import { deleteUser, logout, update } from "../services/sessions.js";
 import STORE from "../store.js";
 import LoginPage from "./login-page.js";
@@ -141,10 +142,16 @@ function listenNewBoard(){
   const form = document.querySelector(".js-create-board-form");{
     form.addEventListener("submit",(e)=>{
       e.preventDefault()
-      
+      const [board_name,...colors] = e.target.elements
+      const selectedColor = colors
+      .filter((option) => option.name === "color")
+      .find((color) => color.checked === true);
+      createBoards({name:board_name.value,color:selectedColor.value}).then(DOMHandler.reload())
     })
   }
 }
+
+
 
 
 

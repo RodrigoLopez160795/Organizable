@@ -1,11 +1,11 @@
-export function CreateBoard(){
-    return `
+export function CreateBoard() {
+  return `
     <form class="js-create-board-form board-form display-none">
         <p class="js-close-create">X</p>
         <div class="board-form-container">
     
         <div class="create-board-container">
-            <input type="text" placeholder="Board name" class="create-board-container-input font-boards">
+            <input type="text" placeholder="Board name" name="board_name" class="create-board-container-input font-boards">
             <button class="create-board-container-button upcase font-xs" type="submit">Create</button>
         </div>
         <div class="board-colors">
@@ -21,5 +21,5 @@ export function CreateBoard(){
         </div>
         </div>
     </form>
-    `
+    `;
 }
