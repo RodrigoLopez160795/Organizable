@@ -45,7 +45,7 @@
 
 .board-form p{
     cursor: pointer;
-    color: var(--green);
+    color: var(--white);
     width: 19.2px;
     height: 19.2px;
 }
