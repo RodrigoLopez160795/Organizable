@@ -16,7 +16,7 @@ async function renderBoards() {
       .reduce(
         (boardsArr, board) =>
           (boardsArr += `
-    <div class="${board.color.split(" ").join("-")} board js-board data-starred = "true">
+    <div class="${board.color.split(" ").join("-")} board js-board>
       <p class="font-boards">${board.name}</p>
       <div class="board-buttons-container">
         <button class="board-button"><img src="./assets/images/trashBoard.svg"></button>
@@ -35,7 +35,7 @@ async function renderBoards() {
       .reduce(
         (boardsArr, board) =>
           (boardsArr += `
-      <div class="${board.color.split(" ").join("-")} board js-board" data-starred = "false">
+      <div class="${board.color.split(" ").join("-")} board js-board">
         <p class="font-boards">${board.name}</p>
         <div class="board-buttons-container">
           <button class="board-button"><img src="./assets/images/trashBoard.svg"></button>
