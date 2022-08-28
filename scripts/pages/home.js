@@ -137,6 +137,15 @@ function createBoard() {
    })
 }
 
+function listenNewBoard(){
+  const form = document.querySelector(".js-create-board-form");{
+    form.addEventListener("submit",(e)=>{
+      e.preventDefault()
+      
+    })
+  }
+}
+
 
 
 function HomePage() {
@@ -156,6 +165,7 @@ function HomePage() {
       }
       if (localStorage.getItem("current_page") === STORE.pages.my_boards()) {
         createBoard();
+        listenNewBoard();
       }
     },
   };

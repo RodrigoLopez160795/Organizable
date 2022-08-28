@@ -6,7 +6,7 @@ export function CreateBoard(){
     
         <div class="create-board-container">
             <input type="text" placeholder="Board name" class="create-board-container-input font-boards">
-            <button class="create-board-container-button upcase font-xs">Create</button>
+            <button class="create-board-container-button upcase font-xs" type="submit">Create</button>
         </div>
         <div class="board-colors">
             <input type="radio" name="color" id="light-green" value="light-green" />
