@@ -29,3 +29,7 @@
     justify-content: flex-end;
     gap: .625rem;
 }
+
+.js-opacity{
+    filter:brightness(30%);
+}
