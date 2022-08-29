@@ -34,7 +34,7 @@ export async function createBoards(data = { name, color }) {
   return board;
 }
 
-export async function boardStarred(id, credentials = { starred }) {
+export async function boardPatch(id, credentials = { patch }) {
   const token = sessionStorage.getItem(tokenKey);
   const response = await fetch(`${BASE_URI}/boards/${id}`, {
     headers: {
@@ -52,20 +52,22 @@ export async function boardStarred(id, credentials = { starred }) {
   return board;
 }
 
-export async function closeBoard(id, credentials = { closed }) {
+export async function deleteBoard(id){
   const token = sessionStorage.getItem(tokenKey);
-  const response = await fetch(`${BASE_URI}/boards/${id}`, {
-    headers: {
-      "Content-Type": "application/json",
+  const response = await fetch(`${BASE_URI}/boards/${id}`,{
+    headers:{
       Authorization: `Token token=${token}`,
     },
-    method: "PATCH",
-    body: JSON.stringify(credentials),
-  });
-  const board = await response.json();
-  if (!response.ok) {
-    return board.errors.message;
+    method:"DELETE"
+  })
+  let data;
+  try {
+    data = await response.json();
+  } catch (error) {
+    data = response.status.text;
   }
+  if (!response.ok) throw new Error(data.errors);
   DOMHandler.load(HomePage(), root);
-  return board;
+  return data;
 }
+
