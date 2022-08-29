@@ -51,3 +51,21 @@ export async function boardStarred(id, credentials = { starred }) {
   DOMHandler.load(HomePage(), root);
   return board;
 }
+
+export async function closeBoard(id, credentials = { closed }) {
+  const token = sessionStorage.getItem(tokenKey);
+  const response = await fetch(`${BASE_URI}/boards/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Token token=${token}`,
+    },
+    method: "PATCH",
+    body: JSON.stringify(credentials),
+  });
+  const board = await response.json();
+  if (!response.ok) {
+    return board.errors.message;
+  }
+  DOMHandler.load(HomePage(), root);
+  return board;
+}
