@@ -1,5 +1,6 @@
 import { root, tokenKey } from "./config.js";
 import DOMHandler from "./dom-handler.js";
+import BoardPage from "./pages/board-page.js";
 import CreateAccountPage from "./pages/create-account-page.js";
 import HomePage from "./pages/home.js";
 import LoginPage from "./pages/login-page.js";
@@ -14,7 +15,12 @@ function App() {
       case STORE.pages.create_account(): DOMHandler.load(CreateAccountPage(),root); break;
     }
   }
-  else DOMHandler.load(HomePage(),root)
+  else {
+    switch(page){
+      case STORE.pages.my_boards(): DOMHandler.load(HomePage(),root); break;
+      case STORE.pages.board(): DOMHandler.load(BoardPage(), root); break;
+    }
+  }
 }
 
 export default App;

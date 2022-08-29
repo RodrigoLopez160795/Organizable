@@ -8,6 +8,7 @@ import DOMHandler from "../dom-handler.js";
 import { createBoards } from "../services/boards.js";
 import { deleteUser, logout, update } from "../services/sessions.js";
 import STORE from "../store.js";
+import BoardPage from "./board-page.js";
 import LoginPage from "./login-page.js";
 
 let errors = [];
@@ -20,6 +21,8 @@ function renderAsidePages() {
       return MyProfile(errors);
     case STORE.pages.closed_boards():
       return ClosedBoards();
+    case STORE.pages.board():
+      return BoardPage(board);
   }
 }
 function render() {
@@ -140,13 +143,16 @@ function createBoard() {
 
 function listenNewBoard(){
   const form = document.querySelector(".js-create-board-form");{
-    form.addEventListener("submit",(e)=>{
+    form.addEventListener("submit",async (e)=>{
       e.preventDefault()
       const [board_name,...colors] = e.target.elements
       const selectedColor = colors
       .filter((option) => option.name === "color")
-      .find((color) => color.checked === true);
-      createBoards({name:board_name.value,color:selectedColor.value}).then(DOMHandler.reload())
+      .find((color) => color.checked === true)
+      if(board_name.value.length > 0){
+       await createBoards({name:board_name.value,color:selectedColor.value})
+      }
+      
     })
   }
 }

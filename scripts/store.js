@@ -8,6 +8,7 @@ const STORE = {
     my_boards: () => `my_boards`,
     my_profile: () => `my_profile`,
     closed_boards: () => `closed_boards`,
+    board: () => `board`
   },
   currentPage() {
     return localStorage.getItem("current_page") || this.pages.login();

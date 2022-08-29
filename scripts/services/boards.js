@@ -31,6 +31,7 @@ export async function createBoards(data = { name, color }) {
   if (!response.ok) {
     return board.errors.message;
   }
+  DOMHandler.load(HomePage(),root)
   return board;
 }
 

@@ -1,4 +1,8 @@
+import { root } from "../config.js";
+import DOMHandler from "../dom-handler.js";
+import BoardPage from "../pages/board-page.js";
 import { boardPatch, getBoards } from "../services/boards.js";
+import STORE from "../store.js";
 
 function isThereABoard(boards, boolean) {
   const result = boards.filter((board) => board.starred === boolean);
@@ -7,7 +11,6 @@ function isThereABoard(boards, boolean) {
 
 async function renderBoards() {
   const boards = await getBoards();
-
   let starredBoards = "";
   let boardsLists = "";
   if (isThereABoard(boards, true)) {
@@ -16,8 +19,8 @@ async function renderBoards() {
       .reduce(
         (boardsArr, board) =>
           (boardsArr += `
-    <div class="${board.color.split(" ").join("-")} board js-board>
-      <p class="font-boards">${board.name}</p>
+    <div class="${board.color.split(" ").join("-")} board" id="${board.id}">
+      <p class="font-boards js-board" id="${board.id}">${board.name}</p>
       <div class="board-buttons-container">
         <button class="board-button js-closed" id="${
           board.id
@@ -37,9 +40,9 @@ async function renderBoards() {
       .reduce(
         (boardsArr, board) =>
           (boardsArr += `
-      <div class="${board.color.split(" ").join("-")} board js-board">
-        <p class="font-boards">${board.name}</p>
-        <div class="board-buttons-container">
+      <div class="${board.color.split(" ").join("-")} board" id="${board.id}">
+        <p class="font-boards js-board" id="${board.id}">${board.name}</p>
+        <div class="board-buttons-container" id="${board.id}">
           <button class="board-button js-closed" id="${
             board.id
           } "><img src="./assets/images/trashBoard.svg" id="${
@@ -64,6 +67,7 @@ function renderBoard(boards, starred, boardsList) {
   starredBoards.innerHTML = starred;
   listenStarred(boardsList);
   listenClosed(boardsList);
+  listenBoardDetail(boardsList)
 }
 
 export function MyBoards() {
@@ -109,4 +113,16 @@ function listenClosed(boardsList) {
       await boardPatch(id, { closed: !boardSelected.closed });
     });
   });
+}
+
+function listenBoardDetail(boardsList){
+  const boards = document.querySelectorAll(".js-board");
+  boards.forEach((board)=>{
+    board.addEventListener("click",({target})=>{
+      const boardSelected = boardsList.find((board) => board.id === parseInt(target.id));
+      localStorage.setItem("current_board",JSON.stringify(boardSelected))
+      localStorage.setItem("current_page",STORE.pages.board())
+      DOMHandler.load(BoardPage(),root);
+    })
+  })
 }

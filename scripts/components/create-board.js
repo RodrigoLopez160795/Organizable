@@ -9,7 +9,7 @@ export function CreateBoard() {
             <button class="create-board-container-button upcase font-xs" type="submit">Create</button>
         </div>
         <div class="board-colors">
-            <input type="radio" name="color" id="light-green" value="light-green" />
+            <input type="radio" name="color" id="light-green" value="light-green" checked />
             <input type="radio" name="color" id="light-red" value="light-red" />
             <input type="radio" name="color" id="magic-blue" value="magic-blue" />
             <input type="radio" name="color" id="orange" value="orange" />
